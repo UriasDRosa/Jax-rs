@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: APIs
+  description: Documentação das APIs do Trabalho com jax-rs
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /livraria:
+    get:
+      summary: Retorna uma mensagem
+      responses:
+        '200':
+          description: Título do Livro
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      summary: Retorna o Título do Livro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+              required:
+                - Titulo
+      responses:
+        '201':
+          description: Livro cadastrado com sucesso
+  /livraria/livros:
+    post:
+      summary: Cadastra um novo livro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+      responses:
+        '201':
+          description: Livro cadastrado com sucesso
+  /livraria/Titulo:
+    get:
+      summary: Retorna o Titulo dos Livros
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+      responses:
+        '201':
+          description: "Titulos"
