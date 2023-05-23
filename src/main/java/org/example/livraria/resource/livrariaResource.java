@@ -52,4 +52,12 @@ public class livrariaResource {
         message.setTitulo("Título do Livro");
         return Response.ok(message).build();
     }
+
+    @DELETE
+    @Path("/livraria/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletarLivro(@PathParam("id") Long id){
+        livrosService.delete(id);
+        return Response.ok().build();
+    }
 }
