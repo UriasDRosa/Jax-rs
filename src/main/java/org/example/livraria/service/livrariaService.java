@@ -7,6 +7,7 @@ import org.example.livraria.response.livrariaResponse;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.validation.constraints.Null;
 
 public class livrariaService {
     public String returnLivros(String titulo) {
@@ -57,4 +58,27 @@ public class livrariaService {
             entityManager.close();
         }
     }
+
+    public livrariaEntity delete(Long id) {
+        livrariaEntity livroEntity = new livrariaEntity();
+        EntityManager entityManager = Persistence
+                .createEntityManagerFactory("Trabalho_jax_rs")
+                .createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            livroEntity.setId(id);
+            livroEntity = entityManager.find(livrariaEntity.class, 1L);
+            entityManager.clear();
+            transaction.commit();
+            return livroEntity;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+    }
+
+
 }
